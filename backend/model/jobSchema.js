@@ -11,7 +11,7 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide decription."],
     minLength: [30, "Description must contain at least 30 Characters!"],
-    maxLength: [500, "Description cannot exceed 500 Characters!"],
+    maxLength: [5000, "Description cannot exceed 500 Characters!"],
   },
   category: {
     type: String,
@@ -28,36 +28,34 @@ const jobSchema = new mongoose.Schema({
   location: {
     type: String,
     required: [true, "Please provide location."],
-    minLength: [20, "Location must contian at least 20 characters!"],
+    minLength: [10, "Location must contian at least 20 characters!"],
   },
-  fixedSalary: {
+  salary: {
     type: Number,
     minLength: [4, "Salary must contain at least 4 digits"],
     maxLength: [9, "Salary cannot exceed 9 digits"],
   },
-  salaryFrom: {
-    type: Number,
-    minLength: [4, "Salary must contain at least 4 digits"],
-    maxLength: [9, "Salary cannot exceed 9 digits"],
+  deadline: {
+    type: String,
+    required: true,
   },
-  salaryTo: {
-    type: Number,
-    minLength: [4, "Salary must contain at least 4 digits"],
-    maxLength: [9, "Salary cannot exceed 9 digits"],
+  jobType: {
+    type: String,
+    required: true,
   },
-  expired: {
-    type: Boolean,
-    default: false,
-  },
-  jobPostedOn: {
-    type: Date,
-    default: Date.now,
-  },
-  postedBy: {
+  company:{
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
   },
+  users:{
+    type:[
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      }
+    ],
+  }
 },{timestamps:true});
 
 export const Job = mongoose.model("Job", jobSchema);

@@ -1,4 +1,5 @@
 "use client"
+import HomePageNavsForCompany from "@/components/HomePageNavsForCompany";
 import HomePageNavs from "@/components/HomePageNavsForUser"
 import { userDetailsActions } from "@/store/userSlice";
 import Cookies from "js-cookie";
@@ -47,7 +48,13 @@ const layout = ({children}) => {
         ) : (
           <>
             <nav className=" sticky top-0 bg-white z-50">
-              <HomePageNavs />
+              {
+                userInfo?.role==='Job Seeker' ? (
+                  <HomePageNavs />
+                ):(
+                  <HomePageNavsForCompany />
+                )
+              }
             </nav>
             {children}
           </>
