@@ -1,10 +1,12 @@
 "use client"
+import { useRouter } from "next/navigation";
 import { useState } from "react"
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 const CreateJobs = () => {
     const userInfo=useSelector(item=>item.userInformation);
-    
+    const router=useRouter()
 
     const [info,setInfo] = useState({
         title:"",
@@ -51,8 +53,11 @@ const CreateJobs = () => {
                 country:"",
                 city:""
             })
+            router.push("/home")
         }
-        console.log(res);
+        else{
+            toast.error(res)
+        }
     }
 
   return (

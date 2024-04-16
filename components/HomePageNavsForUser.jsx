@@ -82,11 +82,17 @@ const HomePageNavs = () => {
                         <Minimize2 />
                     </div>
                     <ul className=' flex flex-col gap-12 justify-start  font-semibold items-start'>
-                        <Link href="/">Jobs</Link>
-                        <Link href="/">Resources</Link>
-                        <Link href="/">Employers</Link>
-                        <Link href="/">About</Link>
-                        <Link href="/">Contact Us</Link>
+                        {
+                            userNavs.map((item,index)=>{
+                                return(
+                                    <li key={index}>
+                                        <Link className={`${pathName===item.route?"text-green-600":"text-gray-400"}`} href={item.route}>
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                     <div className='  md:hidden gap-3 mt-6'>
                         <div className='flex  cursor-pointer hover:bg-slate-200 p-2 rounded-md duration-700 ease-out items-center gap-3 '>

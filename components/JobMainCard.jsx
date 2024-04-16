@@ -38,7 +38,7 @@ const JobMainCard = ({item}) => {
         <p className=" text-gray-400 mb-3 text-sm text-justify mt-2">{item?.description?.slice(0,100)}</p>
         <hr />
         <div className=" mt-3 flex items-center justify-between">
-          <h1 className=" font-bold text-[15px]">&#8377;.  {(item?.salary/12)}/m</h1>
+          <h1 className=" font-bold text-[15px]">&#8377;.  {(item?.salary/12).toFixed(2)}/m</h1>
           <p className=" text-slate-400 text-sm flex gap-2 items-center"> <History size={16}/> Posted {timeAgo.format(date)} </p>
         </div>
         

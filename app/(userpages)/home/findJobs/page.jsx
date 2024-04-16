@@ -15,7 +15,7 @@ const FindJobs = () => {
 
   useEffect(()=>{
     getAllJobs();
-  },[allJobs])
+  },[])
 
   return (
     <main className="  flex bg-slate-100 min-h-screen gap-6 p-3 ">

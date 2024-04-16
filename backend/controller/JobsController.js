@@ -1,3 +1,4 @@
+import { Application } from "../model/applicationSchema.js";
 import { Job } from "../model/jobSchema.js";
 
 export const createJob=async(req,res)=>{
@@ -37,6 +38,17 @@ export const getCurrentCompanyJobs=async(req,res)=>{
     try{
         const getAllJobs=await Job.find({
             company:req.companyId
+        });
+        res.status(200).json(getAllJobs);
+    }catch(err){
+        res.status(500).json(err.message);
+    }
+}
+
+export const getApplicationsOfCurrentJob=async(req,res)=>{
+    try{
+        const getAllJobs=await Application.find({
+            jobID:req.params.jobID
         });
         res.status(200).json(getAllJobs);
     }catch(err){

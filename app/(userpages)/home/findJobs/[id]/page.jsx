@@ -1,9 +1,19 @@
 "use client"
+import ApplicationForm from "@/components/ApplicationForm";
 import { useEffect, useState } from "react";
 
 const page = ({params}) => {
     const id=params.id;
     const [job,setJob]=useState('')
+    const [isAppliedOpen,setSsAppliedOpen]=useState(false)
+
+    const handleOpenApplied=()=>{
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' 
+    });
+      setSsAppliedOpen(!isAppliedOpen)
+    }
     
     const getAllJobs=async()=>{
       let res= await fetch(`${process.env.API}/jobs/allJobs/${id}`);
@@ -65,7 +75,7 @@ const page = ({params}) => {
           </div>
           <div className=" flex items-center mb-4 text-[18px] gap-3">
             <h1 className=" text-green-500 font-bold">Salary: </h1>
-            <h1 className="">{job?.salary}</h1>
+            <h1 className="">&#8377;. {job?.salary}</h1>
           </div>
           <div className=" flex items-center mb-4 text-[18px] gap-3">
             <h1 className=" text-green-500 font-bold">Job Posted On: </h1>
@@ -79,8 +89,15 @@ const page = ({params}) => {
             <h1 className=" text-green-500 font-bold">Description: </h1>
             <div dangerouslySetInnerHTML={{ __html: res }} />
           </div>
-          
+          <button onClick={handleOpenApplied} className=" bg-green-500 w-full font-bold text-white p-2 rounded-md">Apply Now</button>
       </div>
+      {
+        isAppliedOpen && (
+          <div className=" fixed top-0 left-0 w-full backdrop-blur-sm z-50">
+            <ApplicationForm job={job} handleOpenApplied={handleOpenApplied}/>
+          </div>
+        )
+      }
     </div>
   )
 }
